@@ -5,6 +5,7 @@ import {
   ViewChild,
   ElementRef,
   ChangeDetectorRef,
+  OnInit,
 } from '@angular/core';
 import moment from 'moment';
 
@@ -13,13 +14,13 @@ import moment from 'moment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
   // @ViewChild('el') el: any;
   @ViewChild('el', { static: true }) el: ElementRef;
   name = 'Angular ' + VERSION.major;
   calendar = [];
   maxScrollLeft = 0;
-  totalTime = 4;
+  totalTime;
 
   booking_order = [
     {
@@ -29,6 +30,11 @@ export class AppComponent implements AfterViewInit {
           order_id: 'ORDER-001',
           start_time: '2022-07-10T17:00:00.000Z',
           end_tine: '2022-07-20T17:00:00.000Z',
+        },
+        {
+          order_id: 'ORDER-002',
+          start_time: '2022-07-25T17:00:00.000Z',
+          end_tine: '2022-07-27T17:00:00.000Z',
         },
       ],
     },
@@ -140,6 +146,9 @@ export class AppComponent implements AfterViewInit {
         this.calendar.push(moment(lastElement[0]).add(week + 1, 'day'));
       }
     }
+  }
+  ngOnInit() {
+    
   }
 
   ngAfterViewInit() {

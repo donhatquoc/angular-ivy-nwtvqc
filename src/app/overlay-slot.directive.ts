@@ -16,12 +16,12 @@ import moment from 'moment';
 export class OverlaySlotDirective implements AfterViewInit {
   @Input()
   set range(value) {
-    console.log(this.elementRef.nativeElement.offsetWidth);
+    console.log(value);
+    if (!value.totalTime) return;
     const totalTime = value.totalTime;
-    const widthTotal = this.elementRef.nativeElement.offsetWidth - 70;
     const widthTotalPos = this.elementRef.nativeElement.offsetWidth;
-    // const scale = 74 / (24*3600);
-    var scale = 0.0008564814814814815;
+    const scale = 72 / (24 * 3600);
+
     value.booking.order.forEach((order) => {
       // take a look caculate the translation x value
       // caculate the with of the book related to time range
@@ -29,9 +29,10 @@ export class OverlaySlotDirective implements AfterViewInit {
         moment(order.end_tine).unix() - moment(order.start_time).unix();
       const posStart =
         moment(order.start_time).unix() - moment(value.start).unix();
-      const ran = (posStart * widthTotalPos) / totalTime;
+      console.log(moment(order.start_time).format('YYYY-MM-DD HH:mm:ss'));
+      const ran = posStart * scale;
       const ranWidth = timeDuring * scale;
-      console.log(ranWidth);
+      // console.log(ranWidth);
       const child = this.document.createElement('div');
       child.className = 'overlay-slot';
       // child.style.transform = `translateX(${ran}px)`;
@@ -41,7 +42,7 @@ export class OverlaySlotDirective implements AfterViewInit {
       this.renderer.appendChild(this.elementRef.nativeElement, child);
     });
 
-    console.log(value);
+    // console.log(value);
   }
   constructor(
     private elementRef: ElementRef,

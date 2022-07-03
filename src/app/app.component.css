@@ -83,3 +83,11 @@ th {
   font-size: 12px;
   color: rgba(0, 0, 0, 0.7);
 }
+table {
+  display: table;
+  border-collapse: separate;
+  box-sizing: border-box;
+  text-indent: initial;
+  border-spacing: 0px;
+  border-color: grey;
+}
