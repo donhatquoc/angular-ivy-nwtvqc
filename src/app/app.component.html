@@ -1,0 +1,32 @@
+<hello name="{{ name }}"></hello>
+
+<div #el (scroll)="onScroll($event)" class="calendar">
+  <table class="table2 mqtable3">
+    <tbody>
+      <tr>
+        <th style="min-width:60px"></th>
+        <th class="day" *ngFor="let day of calendar">
+          {{ day | date: 'shortDate' }}
+        </th>
+      </tr>
+      <ng-container *ngFor="let booking of booking_order">
+        <tr
+          class="time-slot"
+          appRender
+          [range]="{booking, totalTime: totalTime, start: calendar[0]}"
+        >
+          <th class="heading-left">{{ booking.group_id }}</th>
+          <td
+            style="min-width:70px"
+            *ngFor="let day of calendar"
+            [attr.id]="day"
+            class="date-slot"
+          >
+            {{ day | date: 'shortTime' }}
+          </td>
+        </tr>
+      </ng-container>
+      <!-- <div class="overlay-slot"></div> -->
+    </tbody>
+  </table>
+</div>
