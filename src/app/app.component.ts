@@ -28,7 +28,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       order: [
         {
           order_id: 'ORDER-001',
-          start_time: '2022-07-10T17:00:00.000Z',
+          start_time: moment(),
           end_tine: '2022-07-20T17:00:00.000Z',
         },
         {
