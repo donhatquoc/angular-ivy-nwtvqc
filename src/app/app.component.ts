@@ -19,7 +19,7 @@ export class AppComponent implements AfterViewInit {
   name = 'Angular ' + VERSION.major;
   calendar = [];
   maxScrollLeft = 0;
-  totalTime = 0;
+  totalTime = 4;
 
   booking_order = [
     {
