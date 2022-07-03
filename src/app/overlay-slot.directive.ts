@@ -29,7 +29,7 @@ export class OverlaySlotDirective implements AfterViewInit {
       const posStart =
         moment(order.start_time).unix() - moment(value.start).unix();
       const ran = (posStart * widthTotalPos) / totalTime;
-      const ranWidth = timeDuring * scale;
+      const ranWidth = (timeDuring * 72) / (24 * 3600);
       const child = this.document.createElement('div');
       child.className = 'overlay-slot';
       // child.style.transform = `translateX(${ran}px)`;
